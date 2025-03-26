@@ -2,7 +2,6 @@
 Este repositório tem como objetivo o estudo da linguagem Java por meio do desenvolvimento de jogos. Aqui, você encontrará projetos que exploram conceitos da linguagem, além do código-fonte de jogos simples e populares.
 
 
-```html
 <div style="height: 200px; border-radius: 15px; border: 1px solid rgb(63, 62, 62); display: flex; align-items: center; padding: 5px;">
   <img src="\DinoChrome\imagem\img.png" alt="Imagem" style="height: 190px; margin-right: 10px;">
   <div style="padding: 10px; height: 170px; display: flex; flex-direction: column; justify-content: flex-start; width: 100vw;">
