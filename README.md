@@ -1,7 +1,7 @@
 # GamesInJava
 Este repositório tem como objetivo o estudo da linguagem Java por meio do desenvolvimento de jogos. Aqui, você encontrará projetos que exploram conceitos da linguagem, além do código-fonte de jogos simples e populares.
 
-<div style="display: flex; align-items: center; margin-bottom: 20px;">
+<div style="display: flex; align-items: center; margin-bottom: 20px;" align="left">
   <img src="DinoChrome/imagem/img.png" alt="Imagem" style="height: 190px; margin-right: 10px;">
   <div>
     <h2 style="margin-top: 0; font-size: 24px; color: #333;">Dino Chrome</h2>
