@@ -5,6 +5,8 @@ import github.rafael.events.ColisionChecker;
 import github.rafael.events.KeyEventCapture;
 import github.rafael.tiles.EnemyTile;
 import github.rafael.tiles.TileManager;
+import github.rafael.windows.components.GameOver;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,8 +29,10 @@ public class GamePanel extends JPanel implements Runnable {
     private final TileManager tileManager;
     EnemyTile enemyTile;
 
-    ColisionChecker colisionChecker = new ColisionChecker(this);
+    private boolean runtimeGame;
 
+    ColisionChecker colisionChecker = new ColisionChecker(this);
+    GameOver over = new GameOver(this);
     Thread initGame;
 
     public GamePanel(){
@@ -59,12 +63,24 @@ public class GamePanel extends JPanel implements Runnable {
                 currentTime = System.nanoTime();
                 delta += (currentTime-lastTime)/drawInterval;
                 lastTime = currentTime;
-
                 if(delta >=1 ){
-                    if(!colisionChecker.isColisionDino()){
+                    runtimeGame = colisionChecker.isColisionDino();
+                    if(!runtimeGame){
                         update();
-                        repaint();
+                    }else{
+                        if(keyEventCapture.spaceKey){
+                            colisionChecker.setColisionDino(false);
+                            tileManager.loadMap();
+                            tileManager.setMoving(false);
+                            enemyTile.setEnemyInMap(0);
+                        }
+                        else{
+                            tileManager.setMoving(true);
+                        }
+
                     }
+                    repaint();
+
                     exit();
                     delta--;
                 }
@@ -88,6 +104,9 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
         tileManager.draw(g2);
         dino.draw(g2);
+        if(runtimeGame){
+            over.draw(g2);
+        }
         g2.dispose();
     }
 

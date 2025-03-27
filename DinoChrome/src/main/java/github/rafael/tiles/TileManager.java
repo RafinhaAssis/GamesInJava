@@ -17,6 +17,7 @@ public class TileManager {
     private int[][] mapTile;
     int[][] auxiliaryMap;
     int taxUpdate;
+    private boolean moving;
 
     public TileManager(GamePanel gamePanel){
         this.gamePanel = gamePanel;
@@ -53,7 +54,7 @@ public class TileManager {
         }
     }
 
-    void loadMap(){
+    public void loadMap(){
         try{
             InputStream is = getClass().getResourceAsStream("/map/map.txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -98,7 +99,10 @@ public class TileManager {
                         );
             }
         }
-        auxiliaryMapRenderization();
+        if(!moving){
+            auxiliaryMapRenderization();
+        }
+
     }
 
 
@@ -122,5 +126,9 @@ public class TileManager {
 
     public boolean getMapTile(int c, int l){
         return tiles[mapTile[c][l]].colision;
+    }
+
+    public void setMoving(boolean moving) {
+        this.moving = moving;
     }
 }

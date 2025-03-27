@@ -6,25 +6,30 @@ import java.util.Random;
 
 public class EnemyTile {
     GamePanel gamePanel;
-    private int maxEnemy = 2;
+    private int maxEnemy = 3;
     private int enemyInMap = 0;
     private Random random = new Random();
+    private int spaceReal = 0;
 
     public EnemyTile(GamePanel gamePanel){
         this.gamePanel = gamePanel;
+
     }
 
     public void updateEnemy(){
         desableEnemy();
 
         if(enemyInMap<maxEnemy){
-            int code = gamePanel.getTileManager().getTiles(gamePanel.getSizeScreenCol()-2,4);
-            if(code<5){
+            spaceReal++;
+
+            int code = gamePanel.getTileManager().getTiles(this.gamePanel.getSizeScreenCol()-2,4);
+            if(code<5 && spaceReal>random.nextInt(160,220)){
                 int enemyCode = random.nextInt(5,7);
                 this.gamePanel.getTileManager().setTiles(enemyCode, gamePanel.getSizeScreenCol()-2, 4);
                 enemyInMap++;
+                spaceReal=0;
             }
-
+            spaceReal++;
         }
     }
 
@@ -39,5 +44,9 @@ public class EnemyTile {
             }
         }
 
+    }
+
+    public void setEnemyInMap(int enemyInMap) {
+        this.enemyInMap = enemyInMap;
     }
 }

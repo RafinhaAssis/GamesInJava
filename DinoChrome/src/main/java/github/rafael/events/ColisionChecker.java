@@ -15,10 +15,13 @@ public class ColisionChecker {
     public void verifyColision(Entity entity){
         int entityMatrizPositionX = ((entity.x+ (entity.solidArea.x))/gamePanel.getTileSize());
         int entityMatrizPositionY= (entity.yDefault-entity.y+gamePanel.getTileSize())/ gamePanel.getTileSize();
-        System.out.println(entity.x);
         if(gamePanel.getTileManager().getMapTile(entityMatrizPositionX,entityMatrizPositionY)){
             colisionDino = true;
         }
+    }
+
+    public void setColisionDino(boolean colisionDino) {
+        this.colisionDino = colisionDino;
     }
 
     public boolean isColisionDino() {
