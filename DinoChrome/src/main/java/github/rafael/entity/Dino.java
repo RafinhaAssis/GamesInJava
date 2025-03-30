@@ -22,6 +22,9 @@ public class Dino extends Entity{
     boolean jump;
     boolean statusJump;
 
+    //-> Placar
+    private int score;
+
 
     public Dino (GamePanel gamePanel, KeyEventCapture keyEventCapture, ColisionChecker colisionChecker){
         this.gamePanel =gamePanel;
@@ -99,5 +102,14 @@ public class Dino extends Entity{
 
     public void draw(Graphics2D g2){
         g2.drawImage(images[controlSprite], x ,yDefault-y, gamePanel.getTileSize(),gamePanel.getTileSize(), null);
+    }
+
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 }

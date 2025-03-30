@@ -6,6 +6,7 @@ import github.rafael.events.KeyEventCapture;
 import github.rafael.tiles.EnemyTile;
 import github.rafael.tiles.TileManager;
 import github.rafael.windows.components.GameOver;
+import github.rafael.windows.components.Score;
 
 
 import javax.swing.*;
@@ -21,13 +22,14 @@ public class GamePanel extends JPanel implements Runnable {
 
     private final int tileSize = size * scaleSize;
 
-    int sizeScreenColScale = (size*scaleSize)*sizeScreenCol;
+    public int sizeScreenColScale = (size*scaleSize)*sizeScreenCol;
     public int sizeScreenRowScale = (size*scaleSize)*sizeScreenRows;
 
     KeyEventCapture keyEventCapture = new KeyEventCapture();
     Dino dino;
     private final TileManager tileManager;
     EnemyTile enemyTile;
+    Score score;
 
     private boolean runtimeGame;
 
@@ -39,6 +41,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.dino = new Dino(this, keyEventCapture, colisionChecker);
         this.tileManager = new TileManager(this);
         this.enemyTile = new EnemyTile(this);
+        this.score = new Score(this);
 
         this.setPreferredSize(new Dimension(sizeScreenColScale, sizeScreenRowScale));
         this.setBackground(Color.black);
@@ -69,6 +72,7 @@ public class GamePanel extends JPanel implements Runnable {
                         update();
                     }else{
                         if(keyEventCapture.spaceKey){
+                            dino.setScore(0);
                             colisionChecker.setColisionDino(false);
                             tileManager.loadMap();
                             tileManager.setMoving(false);
@@ -104,6 +108,7 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
         tileManager.draw(g2);
         dino.draw(g2);
+        score.draw(g2);
         if(runtimeGame){
             over.draw(g2);
         }
@@ -125,5 +130,9 @@ public class GamePanel extends JPanel implements Runnable {
 
     public TileManager getTileManager() {
         return tileManager;
+    }
+
+    public Dino getDino() {
+        return dino;
     }
 }

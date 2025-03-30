@@ -21,7 +21,7 @@ public class TileManager {
 
     public TileManager(GamePanel gamePanel){
         this.gamePanel = gamePanel;
-        tiles = new Tile[7];
+        tiles = new Tile[10];
         mapTile = new int[gamePanel.getSizeScreenCol()][gamePanel.getSizeScreenRows()];
         auxiliaryMap = new int[gamePanel.getSizeScreenCol()][gamePanel.getSizeScreenRows()];
         startTales();
@@ -48,6 +48,14 @@ public class TileManager {
             tiles[6] = new Tile();
             tiles[6].images = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/personagens/enemy/cacto_3.png")));
             tiles[6].colision = true;
+
+            tiles[7] = new Tile();
+            tiles[7].images = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/sprite_5.png")));
+            tiles[8] = new Tile();
+            tiles[8].images = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/sprite_6.png")));
+
+            tiles[9] = new Tile();
+            tiles[9].images = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/sprite_7.png")));
 
         }catch (IOException e){
             e.printStackTrace();
@@ -85,6 +93,7 @@ public class TileManager {
             }
             mapTile = auxiliaryMap;
             taxUpdate = 0;
+            gamePanel.getDino().setScore(gamePanel.getDino().getScore()+2);
         }
     }
 
